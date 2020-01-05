@@ -1,4 +1,4 @@
-package com.tzauto;
+package com.tzauto.controller;
 
 import com.tzauto.javafxSupport.FXMLController;
 import com.tzauto.server.MainServer;

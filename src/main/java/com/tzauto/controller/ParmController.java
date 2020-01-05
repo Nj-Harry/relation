@@ -1,5 +1,6 @@
-package com.tzauto;
+package com.tzauto.controller;
 
+import com.tzauto.RelationInfo;
 import com.tzauto.server.MainServer;
 import com.tzauto.javafxSupport.FXMLController;
 import javafx.collections.FXCollections;

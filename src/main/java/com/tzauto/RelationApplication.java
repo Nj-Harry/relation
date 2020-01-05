@@ -1,8 +1,8 @@
 package com.tzauto;
 
 import com.tzauto.javafxSupport.AbstractJavaFxApplicationSupport;
+import com.tzauto.view.LoginView;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication

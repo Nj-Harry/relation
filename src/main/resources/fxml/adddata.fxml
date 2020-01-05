@@ -8,7 +8,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0"
            prefWidth="375.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.tzauto.AddDataController">
+           fx:controller="com.tzauto.controller.AddDataController">
     <children>
         <Pane prefHeight="357.0" prefWidth="375.0">
             <children>

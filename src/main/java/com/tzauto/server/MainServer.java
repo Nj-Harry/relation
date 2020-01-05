@@ -1,10 +1,13 @@
 package com.tzauto.server;
 
 import com.tzauto.*;
+import com.tzauto.controller.LoginController;
+import com.tzauto.controller.MainController;
 import com.tzauto.dao.MainMapping;
 import com.tzauto.entity.LotInfo;
 import com.tzauto.entity.RelationEntity;
 import com.tzauto.utils.AvaryAxisUtil;
+import com.tzauto.view.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
@@ -26,8 +29,6 @@ import java.util.regex.Pattern;
 public class MainServer {
 
     private static final Logger logger = Logger.getLogger(MainServer.class);
-
-
     @Autowired
     MainController mainController;
     @Autowired
@@ -103,6 +104,7 @@ public class MainServer {
             return;
         }
         loginView.getStage().close();
+//        登录成功，呈现“关系维护”系欸按
         RelationApplication.showView(MainView.class, null, "关系维护", null, Modality.NONE);
     }
 

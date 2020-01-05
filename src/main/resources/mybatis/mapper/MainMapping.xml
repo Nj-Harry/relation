@@ -15,7 +15,7 @@
 
     <select id="getAll" resultType="com.tzauto.entity.RelationEntity">
 
-    select * from  relations
+    select * from  relations order by material_number
 
     </select>
     <select id="query" resultType="com.tzauto.entity.RelationEntity">

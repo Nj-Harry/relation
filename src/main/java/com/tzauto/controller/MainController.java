@@ -1,8 +1,12 @@
-package com.tzauto;
+package com.tzauto.controller;
 
+import com.tzauto.*;
 import com.tzauto.entity.RelationEntity;
 import com.tzauto.server.MainServer;
 import com.tzauto.javafxSupport.FXMLController;
+import com.tzauto.view.AddDataView;
+import com.tzauto.view.ParmView;
+import com.tzauto.view.UploadView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

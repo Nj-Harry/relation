@@ -1,11 +1,9 @@
 spring:
-
 #      max-wait: 1000
-
   datasource:
 #   数据源基本配置
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/octopus?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
 #   数据源其他配置
@@ -34,7 +32,6 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   # 指定sql映射文件位置
   mapper-locations: classpath:mybatis/mapper/*.xml
-
 javafx:
     stage:
         resizable: false
