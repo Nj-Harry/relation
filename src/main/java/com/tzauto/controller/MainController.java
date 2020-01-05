@@ -102,7 +102,6 @@ public class MainController implements Initializable {
         if (result.get() == ButtonType.OK) {
             dataTable.getSelectionModel().getSelectedItems().forEach(x -> {
                 mainServer.delete(x.getId());
-
             });
         }
     }
@@ -131,8 +130,6 @@ public class MainController implements Initializable {
     }
 
     public void upload(ActionEvent actionEvent) {
-
         RelationApplication.showView(UploadView.class, null, "上传数据", null, Modality.NONE);
-
     }
 }

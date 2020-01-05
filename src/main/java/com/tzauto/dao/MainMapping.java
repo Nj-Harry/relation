@@ -24,11 +24,8 @@ public interface MainMapping {
 
     String queryUser(String name, String passWord);
 
-    LotInfo queryLot(String lot);
 
-    void lotInfoBak(String lot);
 
-    void deleteLot(String lot);
 
     void addData(@Param("lot") String lot, @Param("item2") String item2, @Param("item4") String item4, @Param("item5") String item5, @Param("item6") String item6, @Param("isMain") String isMain);
 }

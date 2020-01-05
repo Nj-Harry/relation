@@ -56,10 +56,14 @@ public class MainServer {
 
     public void delete(int id) {
         mainMapping.delete(id);
-
         mainController.flushData();
     }
 
+    public RelationEntity query(String mateialNumber){
+        RelationEntity relationEntity = new RelationEntity();
+        relationEntity.setMaterialNumber(mateialNumber);
+        return mainMapping.query(relationEntity);
+    }
     public void active(RelationEntity relationEntity) {
 
         if (relationEntity.getRecipeName().equals("")
@@ -125,100 +129,4 @@ public class MainServer {
 //
 //    }
 
-    public void upload(String lot, String endTime) {
-
-        if (!pattern.matcher(endTime).matches()) {
-            CommonUiUtil.alert(Alert.AlertType.INFORMATION, "结束时间格式不正确!");
-            return;
-        }
-
-
-        LotInfo lotInfo = mainMapping.queryLot(lot);
-        if (lotInfo == null) {
-            CommonUiUtil.alert(Alert.AlertType.INFORMATION, "没有该批次信息!");
-            return;
-        }
-
-        String starttime = lotInfo.getStarttime();
-
-        try {
-            LocalDateTime start = LocalDateTime.of(Integer.parseInt(starttime.substring(0, 4)), Integer.parseInt(starttime.substring(4, 6)), Integer.parseInt(starttime.substring(6, 8)), Integer.parseInt(starttime.substring(8, 10)), Integer.parseInt(starttime.substring(10, 12)), Integer.parseInt(starttime.substring(12, 14)));
-            LocalDateTime end = LocalDateTime.of(Integer.parseInt(endTime.substring(0, 4)), Integer.parseInt(endTime.substring(4, 6)), Integer.parseInt(endTime.substring(6, 8)), Integer.parseInt(endTime.substring(8, 10)), Integer.parseInt(endTime.substring(10, 12)), Integer.parseInt(endTime.substring(12, 14)));
-            start = start.plusMinutes(10);
-            LocalDateTime now = LocalDateTime.now();
-            if (end.isBefore(start)) {
-                CommonUiUtil.alert(Alert.AlertType.INFORMATION, "结束时间过早!  请重新输入结束时间");
-                return;
-            } else if (now.isBefore(end)) {
-                CommonUiUtil.alert(Alert.AlertType.INFORMATION, "结束时间晚于现在时间!  请重新输入结束时间");
-                return;
-            }
-        } catch (Exception e) {
-            CommonUiUtil.alert(Alert.AlertType.INFORMATION, "时间解析错误!");
-            return;
-        }
-        lotInfo.setEndTime(endTime);
-        String result = null;
-        try {
-            result = AvaryAxisUtil.insertTable(lotInfo.getPaperNo(), "正常", lotInfo.getStarttime(), endTime, lot, lotInfo.getLayer()
-                    , lotInfo.getMainSerial(), lotInfo.getPartNum(), lotInfo.getWorkNo()
-                    , lotInfo.getLayer(), lotInfo.getLayerName(), lotInfo.getSerial(), lotInfo.getIsMain(), lotInfo.getOrderId()
-                    , lotInfo.getRecipeName(), lotInfo.getTargetNum(), "0", lotInfo.getItem2(), lotInfo.getItem4(), lotInfo.getItem5(), lotInfo.getItem6(), lotInfo.getOpId());
-
-
-        } catch (Throwable e) {
-            logger.error("上传失败", e);
-        }
-
-        if ("OK".equals(result)) {
-            CommonUiUtil.alert(Alert.AlertType.INFORMATION, "信息上传成功!");
-            mainMapping.lotInfoBak(lot);
-            mainMapping.deleteLot(lot);
-            uploadView.getStage().close();
-            StringBuilder sb = new StringBuilder();
-            sb.append("用户：").append(loginController.getUserName().getText()).append(" 手动上传数据-->").append(lotInfo.toString());
-            logger.info(sb.toString());
-            return;
-        }
-        CommonUiUtil.alert(Alert.AlertType.WARNING, "信息上传失败!");
-        return;
-
-
-    }
-
-    /**
-     * 进行以下数据在lotinfo中的修改
-     * Item2	燒焦(PNL)
-     * Item4	皺褶(PNL)
-     * Item5	異色(PNL)
-     * Item6	其它(PNL)
-     */
-    public boolean addData(String lot, String item2, String item4, String item5, String item6, String isMain) {
-        LotInfo lotInfo = mainMapping.queryLot(lot);
-        if (lotInfo == null) {
-            CommonUiUtil.alert(Alert.AlertType.INFORMATION, "没有该批次信息!");
-            return false;
-        }
-        if (StringUtils.isEmpty(item2) && StringUtils.isEmpty(item4) && StringUtils.isEmpty(item5) && StringUtils.isEmpty(item6)) {
-            Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
-            //设置内容
-            alert2.setHeaderText("确认要将批次:" + lot + "的数据清空吗？");
-            //显示对话框
-            Optional<ButtonType> result = alert2.showAndWait();
-            //如果点击OK直接覆盖空值
-            if (result.get() != ButtonType.OK) {
-                return false;
-            }
-        }
-        try {
-            mainMapping.addData(lot, item2, item4, item5, item6, isMain);
-            addDataView.getStage().close();
-            return true;
-        } catch (Exception e) {
-            logger.error("修改数据失败", e);
-            CommonUiUtil.alert(Alert.AlertType.INFORMATION, "系统出错!");
-
-        }
-        return false;
-    }
 }
