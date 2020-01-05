@@ -59,11 +59,16 @@ public class MainServer {
         mainController.flushData();
     }
 
-    public RelationEntity query(String mateialNumber){
+    public List<RelationEntity> query(String mateialNumber){
         RelationEntity relationEntity = new RelationEntity();
         relationEntity.setMaterialNumber(mateialNumber);
         return mainMapping.query(relationEntity);
     }
+
+    /**
+     * 添加或修改提交逻辑
+     * @param relationEntity
+     */
     public void active(RelationEntity relationEntity) {
 
         if (relationEntity.getRecipeName().equals("")
@@ -72,18 +77,18 @@ public class MainServer {
             return;
         }
 
-        RelationEntity query = mainMapping.query(relationEntity);
+        RelationEntity query = mainMapping.query(relationEntity).get(0);
 
         if (relationEntity.getId() == null) {
             if (query != null) {
-                CommonUiUtil.alert(Alert.AlertType.INFORMATION, "相同的批号，料号，序号的记录已存在，删除后可进行添加！！！");
+                CommonUiUtil.alert(Alert.AlertType.INFORMATION, "相同的料号，流程号,程序名的记录已存在，删除后可进行添加！！！");
                 return;
             }
             relationEntity.setRecipeName(relationEntity.getRecipeName() + ".xml");
             mainMapping.add(relationEntity);
         } else {
             if (query != null && (!query.getId().equals(relationEntity.getId()))) {
-                CommonUiUtil.alert(Alert.AlertType.INFORMATION, "相同的批号，料号，序号的记录已存在，删除后可进行修改！！！");
+                CommonUiUtil.alert(Alert.AlertType.INFORMATION, "相同的料号，序号,流程名的记录已存在，删除后可进行修改！！！");
                 return;
             }
             relationEntity.setRecipeName(relationEntity.getRecipeName() + ".xml");

@@ -20,7 +20,7 @@ public interface MainMapping {
 
     void update(RelationEntity relationEntity);
 
-    RelationEntity query(RelationEntity relationEntity);
+    List<RelationEntity> query(RelationEntity relationEntity);
 
     String queryUser(String name, String passWord);
 

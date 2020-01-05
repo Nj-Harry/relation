@@ -1,6 +1,6 @@
 package com.tzauto.controller;
 
-import com.tzauto.RelationInfo;
+import com.tzauto.RelationVO;
 import com.tzauto.server.MainServer;
 import com.tzauto.javafxSupport.FXMLController;
 import javafx.collections.FXCollections;
@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 @FXMLController
 public class ParmController implements Initializable {
 
-    public ObservableList<RelationInfo> list = FXCollections.observableArrayList();
+    public ObservableList<RelationVO> list = FXCollections.observableArrayList();
 
     @FXML
     private TextField materialNumber;

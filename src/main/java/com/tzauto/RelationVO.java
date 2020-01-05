@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * Created by Administrator on 2019/8/16.
  */
-public class RelationInfo {
+public class RelationVO {
 
     //主键ID
     private SimpleIntegerProperty id;
@@ -21,7 +21,7 @@ public class RelationInfo {
     //程序名
     private SimpleStringProperty recipeName;
 
-    public RelationInfo() {
+    public RelationVO() {
     }
 
     public String getFixtureno() {
@@ -48,13 +48,13 @@ public class RelationInfo {
         this.id.set(id);
     }
 
-    public RelationInfo( String materialNumber, String recipeName) {
+    public RelationVO(String materialNumber, String recipeName) {
 
         this.recipeName = new SimpleStringProperty(recipeName);
         this.materialNumber = new SimpleStringProperty(materialNumber);
 
     }
-    public RelationInfo( String materialNumber, String recipeName,Integer id,String fixtureno) {
+    public RelationVO(String materialNumber, String recipeName, Integer id, String fixtureno) {
         this.id = new SimpleIntegerProperty(id);
         this.recipeName = new SimpleStringProperty(recipeName);
         this.materialNumber = new SimpleStringProperty(materialNumber);

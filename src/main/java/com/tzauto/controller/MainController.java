@@ -17,6 +17,7 @@ import javafx.stage.Modality;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -24,19 +25,19 @@ import java.util.ResourceBundle;
 @FXMLController
 public class MainController implements Initializable {
 
-    public ObservableList<RelationInfo> list = FXCollections.observableArrayList();
+    public ObservableList<RelationVO> list = FXCollections.observableArrayList();
 
     public static RelationEntity relationEntity;
 
     @FXML
-    private TableView<RelationInfo> dataTable;     //tableView
+    private TableView<RelationVO> dataTable;     //tableView
 
     @FXML
-    private TableColumn<RelationInfo, String> materialNumber = new TableColumn<>();
+    private TableColumn<RelationVO, String> materialNumber = new TableColumn<>();
     @FXML
-    private TableColumn<RelationInfo, String> recipeName = new TableColumn<>();
+    private TableColumn<RelationVO, String> recipeName = new TableColumn<>();
     @FXML
-    private TableColumn<RelationInfo, String> fixtureno = new TableColumn<>();
+    private TableColumn<RelationVO, String> fixtureno = new TableColumn<>();
 
     @Autowired
     MainServer mainServer;
@@ -47,18 +48,18 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        dataTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<RelationInfo>() {//单击事件
+//        dataTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<RelationVO>() {//单击事件
 //            @Override
-//            public void changed(ObservableValue<? extends RelationInfo> observable, RelationInfo oldValue, RelationInfo newValue) {
+//            public void changed(ObservableValue<? extends RelationVO> observable, RelationVO oldValue, RelationVO newValue) {
 //                System.out.println(newValue.getLot());
 //            }
 //        });
 
         dataTable.setRowFactory(tv -> {
-            TableRow<RelationInfo> row = new TableRow<RelationInfo>();
+            TableRow<RelationVO> row = new TableRow<RelationVO>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    RelationInfo relationInfo = row.getItem();
+                    RelationVO relationInfo = row.getItem();
                     relationEntity = new RelationEntity(relationInfo.getId(), relationInfo.getMaterialNumber(), relationInfo.getRecipeName(), relationInfo.getFixtureno());
                     parmController.test();
                     RelationApplication.showView(ParmView.class, null, "输入文本", null, Modality.NONE);
@@ -74,13 +75,13 @@ public class MainController implements Initializable {
 
     }
 
+
     public void flushData() {
         dataTable.getItems().clear();
-        List<RelationEntity> all = mainServer.getAll();
-        for (int i = 0; i < all.size(); i++) {
-            RelationEntity dataTableProperty = all.get(i);
+        List<RelationEntity>  resultList = mainServer.getAll();
 
-            RelationInfo property = new RelationInfo(dataTableProperty.getMaterialNumber(),
+        for (RelationEntity dataTableProperty : resultList) {
+            RelationVO property = new RelationVO(dataTableProperty.getMaterialNumber(),
                     dataTableProperty.getRecipeName(), dataTableProperty.getId(), dataTableProperty.getFixtureno());
             list.add(property);
         }
