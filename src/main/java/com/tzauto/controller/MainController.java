@@ -44,7 +44,8 @@ public class MainController implements Initializable {
     MainServer mainServer;
     @Autowired
     ParmController parmController;
-
+    @Autowired
+    QueryController queryController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -94,7 +95,9 @@ public class MainController implements Initializable {
 
     public void queryByMaterialNumber() {
         RelationApplication.showView(QueryView.class, null, "查询", null, Modality.NONE);
-
+        TextField materialNumber = queryController.getMaterialNumber();
+        materialNumber.setText("");
+        materialNumber.requestFocus();
     }
     public void delete(ActionEvent actionEvent) {
         if (dataTable.getSelectionModel().getSelectedItems().size() == 0) {

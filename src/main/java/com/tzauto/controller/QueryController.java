@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 
 @FXMLController
 public class QueryController implements Initializable {
-
     @FXML
     private TextField materialNumber;
     @Resource
@@ -26,6 +25,13 @@ public class QueryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
 
+    public TextField getMaterialNumber() {
+        return materialNumber;
+    }
+
+    public void setMaterialNumber(TextField materialNumber) {
+        this.materialNumber = materialNumber;
     }
 }

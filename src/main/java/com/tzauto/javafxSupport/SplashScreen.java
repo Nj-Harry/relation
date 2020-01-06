@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
  */
 public class SplashScreen {
 
-	private static String DEFAULT_IMAGE = "/static/logoTaiZhi.png";
+	private static String DEFAULT_IMAGE = "/logoTaiZhi.png";
 
 	public  String getDefaultImage() {
 		return DEFAULT_IMAGE;

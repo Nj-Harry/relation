@@ -23,8 +23,6 @@ import java.util.ResourceBundle;
 
 @FXMLController
 public class LoginController implements Initializable {
-
-
     @FXML
     private TextField userName;
     @FXML
@@ -54,12 +52,11 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         // 键盘响应事件
-        ent.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
+        ent.setOnKeyPressed((KeyEvent event) ->{
+            if(event.getCode()==KeyCode.ENTER)
                 mainServer.login();
-            }
         });
     }
 
