@@ -2,10 +2,12 @@ package com.tzauto.controller;
 
 import com.tzauto.*;
 import com.tzauto.entity.RelationEntity;
+import com.tzauto.entity.RelationVO;
 import com.tzauto.server.MainServer;
 import com.tzauto.javafxSupport.FXMLController;
 import com.tzauto.view.AddDataView;
 import com.tzauto.view.ParmView;
+import com.tzauto.view.QueryView;
 import com.tzauto.view.UploadView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +19,6 @@ import javafx.stage.Modality;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -77,9 +78,12 @@ public class MainController implements Initializable {
 
 
     public void flushData() {
-        dataTable.getItems().clear();
         List<RelationEntity>  resultList = mainServer.getAll();
+        addToTable(resultList);
+    }
 
+    public void addToTable(List<RelationEntity> resultList){
+        dataTable.getItems().clear();
         for (RelationEntity dataTableProperty : resultList) {
             RelationVO property = new RelationVO(dataTableProperty.getMaterialNumber(),
                     dataTableProperty.getRecipeName(), dataTableProperty.getId(), dataTableProperty.getFixtureno());
@@ -88,6 +92,10 @@ public class MainController implements Initializable {
         dataTable.setItems(list);
     }
 
+    public void queryByMaterialNumber() {
+        RelationApplication.showView(QueryView.class, null, "查询", null, Modality.NONE);
+
+    }
     public void delete(ActionEvent actionEvent) {
         if (dataTable.getSelectionModel().getSelectedItems().size() == 0) {
             return;

@@ -39,7 +39,7 @@
                         <Button layoutY="4.0" mnemonicParsing="false" onAction="#delete" prefHeight="32.0" prefWidth="67.0" text="删除" />
                         <Button layoutX="100.0" layoutY="4.0" mnemonicParsing="false" onAction="#add" prefHeight="32.0" prefWidth="59.0" text="添加" />
                         <Button layoutX="200.0" layoutY="4.0" mnemonicParsing="false" onAction="#update" prefHeight="32.0" prefWidth="67.0" text="修改" />
-                  <Button layoutX="300.0" layoutY="4.0" mnemonicParsing="false" onAction="#query" prefHeight="32.0" prefWidth="67.0" text="查询" />
+                  <Button layoutX="300.0" layoutY="4.0" mnemonicParsing="false" onAction="#queryByMaterialNumber" prefHeight="32.0" prefWidth="67.0" text="查询" />
                   <Button layoutX="400.0" layoutY="4.0" mnemonicParsing="false" onAction="#flushData" prefHeight="32.0" prefWidth="67.0" text="刷新" />
 
                     </children>

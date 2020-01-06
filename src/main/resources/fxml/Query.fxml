@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tzauto.controller.QueryController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="materialNumber" layoutX="50.0" layoutY="80.0" prefWidth="320.0" />
+            <Label layoutX="50.0" layoutY="45.0" prefWidth="250.0" text="料号:" />
+            <Button layoutX="310.0" layoutY="120.0" mnemonicParsing="false" onAction="#queryByMaterialNumber" prefHeight="28.0" prefWidth="60.0" text="查询" />
+         </children>
+      </Pane>
+   </children>
+</StackPane>

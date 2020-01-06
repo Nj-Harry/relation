@@ -1,6 +1,6 @@
 package com.tzauto.controller;
 
-import com.tzauto.RelationVO;
+import com.tzauto.entity.RelationVO;
 import com.tzauto.server.MainServer;
 import com.tzauto.javafxSupport.FXMLController;
 import javafx.collections.FXCollections;

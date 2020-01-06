@@ -45,6 +45,8 @@ public class MainServer {
     MainView mainView;
     @Autowired
     LoginController loginController;
+    @Autowired
+    QueryView queryView;
 
     public List<RelationEntity> getAll() {
         List<RelationEntity> all = mainMapping.getAll();
@@ -59,10 +61,12 @@ public class MainServer {
         mainController.flushData();
     }
 
-    public List<RelationEntity> query(String mateialNumber){
+    public void queryByMaterialNumber(String materialNumber){
         RelationEntity relationEntity = new RelationEntity();
-        relationEntity.setMaterialNumber(mateialNumber);
-        return mainMapping.query(relationEntity);
+        relationEntity.setMaterialNumber(materialNumber);
+        List<RelationEntity> relationEntityList = mainMapping.query(relationEntity);
+        mainController.addToTable(relationEntityList);
+        queryView.getStage().close();
     }
 
     /**

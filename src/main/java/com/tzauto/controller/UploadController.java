@@ -32,11 +32,11 @@ public class UploadController implements Initializable {
     }
 
 
-    public void action(ActionEvent actionEvent) {
-        lot.getText().trim();
-       endTime.getText().trim();
-        mainServer.upload(lot.getText().trim(),endTime.getText().trim());
-    }
+//    public void action(ActionEvent actionEvent) {
+//        lot.getText().trim();
+//       endTime.getText().trim();
+//        mainServer.upload(lot.getText().trim(),endTime.getText().trim());
+//    }
 
 
 

@@ -1,7 +1,5 @@
 package com.tzauto.javafxSupport;
 
-
-
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.application.Platform;
