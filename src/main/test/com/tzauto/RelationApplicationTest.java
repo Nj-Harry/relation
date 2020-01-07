@@ -20,13 +20,8 @@ public class RelationApplicationTest {
     private MainMapping mainMapping;
     @Test
     public void test(){
-        RelationEntity relationEntity = new RelationEntity(null, "F0AP00A", "43", "F6.xml", null);
+        RelationEntity relationEntity = new RelationEntity(51, "F0AP009", "1", "F6.xml", null);
         List<RelationEntity> all = mainMapping.getAll();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        for(RelationEntity one : all){
 
-            String time = dateFormat.format(one.getLastModifyTime());
-            System.out.println("料号:"+one.getMaterialNumber()+",原时间格式:"+one.getLastModifyTime()+",时间:"+time);
-        }
     }
 }

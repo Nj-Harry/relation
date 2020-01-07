@@ -90,7 +90,7 @@ public class MainServer {
             relationEntity.setRecipeName(relationEntity.getRecipeName() + ".xml");
             mainMapping.add(relationEntity);
         } else {
-            RelationEntity query = relationEntityList.get(0);
+            RelationEntity query = relationEntityList.size()>0?relationEntityList.get(0):null;
             if (query != null && (!query.getId().equals(relationEntity.getId()))) {
                 CommonUiUtil.alert(Alert.AlertType.INFORMATION, "相同的料号，序号,流程名的记录已存在，删除后可进行修改！！！");
                 return;
