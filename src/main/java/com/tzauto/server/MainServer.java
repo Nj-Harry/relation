@@ -81,16 +81,16 @@ public class MainServer {
             return;
         }
 
-        RelationEntity query = mainMapping.query(relationEntity).get(0);
-
+        List<RelationEntity> relationEntityList = mainMapping.query(relationEntity);
         if (relationEntity.getId() == null) {
-            if (query != null) {
+            if (relationEntityList.size() > 0) {
                 CommonUiUtil.alert(Alert.AlertType.INFORMATION, "相同的料号，流程号,程序名的记录已存在，删除后可进行添加！！！");
                 return;
             }
             relationEntity.setRecipeName(relationEntity.getRecipeName() + ".xml");
             mainMapping.add(relationEntity);
         } else {
+            RelationEntity query = relationEntityList.get(0);
             if (query != null && (!query.getId().equals(relationEntity.getId()))) {
                 CommonUiUtil.alert(Alert.AlertType.INFORMATION, "相同的料号，序号,流程名的记录已存在，删除后可进行修改！！！");
                 return;

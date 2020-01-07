@@ -26,9 +26,6 @@
         <if test="fixtureno != null and fixtureno != ''">
             and fixtureno = #{fixtureno}
         </if>
-<!--        <if test="recipe_name != null and recipe_name != ''">-->
-<!--            and recipe_name =#{recipeName}-->
-<!--        </if>-->
 
     </where>
 
