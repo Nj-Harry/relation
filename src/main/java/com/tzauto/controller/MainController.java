@@ -36,10 +36,11 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<RelationVO, String> materialNumber = new TableColumn<>();
     @FXML
+    private TableColumn<RelationVO, String> fixtureno = new TableColumn<>();
+    @FXML
     private TableColumn<RelationVO, String> recipeName = new TableColumn<>();
     @FXML
-    private TableColumn<RelationVO, String> fixtureno = new TableColumn<>();
-
+    private TableColumn<RelationVO, String> lastModifyTime = new TableColumn<>();
     @Autowired
     MainServer mainServer;
     @Autowired
@@ -72,7 +73,7 @@ public class MainController implements Initializable {
         materialNumber.setCellValueFactory(celldata -> celldata.getValue().materialNumberProperty());
         recipeName.setCellValueFactory(celldata -> celldata.getValue().recipeNameProperty());
         fixtureno.setCellValueFactory(celldata -> celldata.getValue().fixturenoProperty());
-
+        lastModifyTime.setCellValueFactory(celldata -> celldata.getValue().lastModifyTimeProperty());
         flushData();
 
     }
@@ -85,9 +86,9 @@ public class MainController implements Initializable {
 
     public void addToTable(List<RelationEntity> resultList){
         dataTable.getItems().clear();
-        for (RelationEntity dataTableProperty : resultList) {
-            RelationVO property = new RelationVO(dataTableProperty.getMaterialNumber(),
-                    dataTableProperty.getRecipeName(), dataTableProperty.getId(), dataTableProperty.getFixtureno());
+        for (RelationEntity relationEntity : resultList) {
+            RelationVO property = new RelationVO(relationEntity.getId(), relationEntity.getMaterialNumber(),
+                    relationEntity.getFixtureno(), relationEntity.getRecipeName(),relationEntity.getLastModifyTime());
             list.add(property);
         }
         dataTable.setItems(list);
@@ -132,9 +133,8 @@ public class MainController implements Initializable {
         dataTable.getSelectionModel().getSelectedItems().forEach(x -> {
 
             relationEntity = new RelationEntity(x.getId(), x.getMaterialNumber(), x.getRecipeName(), x.getFixtureno());
-            parmController.test();
             RelationApplication.showView(ParmView.class, null, "输入文本", null, Modality.NONE);
-
+            parmController.test();
         });
     }
     public void addData(ActionEvent actionEvent) {

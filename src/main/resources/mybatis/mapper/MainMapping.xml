@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tzauto.dao.MainMapping">
     <insert id="add">
-      insert  into relations (recipe_name,material_number,fixtureno) value (#{recipeName}, #{materialNumber},#{fixtureno})
+      insert  into relations (recipe_name,material_number,fixtureno,last_modify_time) value (#{recipeName}, #{materialNumber},#{fixtureno},now())
     </insert>
     <update id="update">
-        update relations set  recipe_name = #{recipeName} , material_number = #{materialNumber},fixtureno=#{fixtureno} where id = #{id}
+        update relations set  recipe_name = #{recipeName} , material_number = #{materialNumber},fixtureno=#{fixtureno},last_modify_time= now() where id = #{id}
     </update>
     <delete id="delete">
         delete from relations where id = #{id}
@@ -15,17 +15,21 @@
 
     <select id="getAll" resultType="com.tzauto.entity.RelationEntity">
 
-    select * from  relations order by material_number
+    select * from  relations order by last_modify_time desc,id
 
     </select>
     <select id="query" resultType="com.tzauto.entity.RelationEntity">
         select * from  relations <where>
-        <if test="fixtureno != null">
+        <if test="materialNumber != null and materialNumber != ''">
+            and material_number = #{materialNumber}
+        </if>
+        <if test="fixtureno != null and fixtureno != ''">
             and fixtureno = #{fixtureno}
         </if>
-         <if test="materialNumber != null">
-            and material_number = #{materialNumber}
-         </if>
+<!--        <if test="recipe_name != null and recipe_name != ''">-->
+<!--            and recipe_name =#{recipeName}-->
+<!--        </if>-->
+
     </where>
 
 

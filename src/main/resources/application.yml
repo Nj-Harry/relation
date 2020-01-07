@@ -5,7 +5,7 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/octopus?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/octopus?useSSL=false&useUnicode=true&characterEncoding=UTF-8
 #   数据源其他配置
     initialSize: 5
     minIdle: 5
@@ -55,3 +55,7 @@ server:
   port: 8086
 spring:
   profiles: prod
+
+logging:
+  level:
+    com.example.demo.dao : debug

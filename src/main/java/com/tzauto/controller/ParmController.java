@@ -65,8 +65,9 @@ public class ParmController implements Initializable {
             materialNumber.setText(MainController.relationEntity.getMaterialNumber());
             recipeName.setText(MainController.relationEntity.getRecipeName());
             fixtureno.setText(MainController.relationEntity.getFixtureno());
+            materialNumber.setPrefColumnCount(materialNumber.getText().length());
+            materialNumber.requestFocus();
         } catch (Exception e) {
-
         }
     }
 

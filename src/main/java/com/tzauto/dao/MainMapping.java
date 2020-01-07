@@ -16,7 +16,7 @@ public interface MainMapping {
 
     void delete(int id);
 
-    void add(RelationEntity relationEntity);
+    Integer add(RelationEntity relationEntity);
 
     void update(RelationEntity relationEntity);
 
